@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data >
+        <variable
+                name="viewModel"
+                type="com.jmj.mypatients.views.treatment.InitTreatmentViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <EditText
+                android:id="@+id/patientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.patientName}"
+                android:hint="Enter full name"
+                android:inputType="text"/>
+        <TextView
+                android:id="@+id/patientSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Source" />
+
+        <Spinner
+                android:id="@+id/availablePatientSources"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/office"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Office" />
+
+        <Spinner
+                android:id="@+id/availableOffices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/initTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.init()}"
+                android:text="Init" />
+    </LinearLayout>
+</layout>
