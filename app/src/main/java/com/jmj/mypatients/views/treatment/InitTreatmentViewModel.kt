@@ -8,11 +8,13 @@ import com.jmj.domain.action.Failure
 import com.jmj.domain.action.InitTreatment
 import com.jmj.domain.action.InitTreatmentRequest
 import com.jmj.domain.action.Success
+import com.jmj.domain.money.Money
 import com.jmj.domain.office.Office
 import com.jmj.domain.office.Offices
 import com.jmj.domain.source.PatientSource
 import com.jmj.domain.source.PatientSources
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class InitTreatmentViewModel(
     private val initTreatment: InitTreatment,
@@ -38,24 +40,27 @@ class InitTreatmentViewModel(
     }
 
     fun init() {
-        status.value = if (validate())
+        if (validate())
             createTreatment()
         else
-            Error("Please fill all fields")
+            status.value = Error("Please fill all fields")
     }
 
 
-    private fun createTreatment() = initTreatment(
-        InitTreatmentRequest(
-            selectedOffice.value!!.id,
-            selectedPatientSource.value!!.id,
-            patientName.value!!
-        )
-    ).let {
-        when (it) {
-            is Success -> TreatmentCreated
-            is Failure -> Error(it.error)
+    private fun createTreatment() = viewModelScope.launch {
+        status.value = initTreatment(
+            InitTreatmentRequest(
+                selectedOffice.value!!.id,
+                selectedPatientSource.value!!.id,
+                patientName.value!!,
+                selectedPatientSource.value!!.fee
+            )
+        ).let {
+            when (it) {
+                is Success -> TreatmentCreated
+                is Failure -> Error(it.error)
 
+            }
         }
     }
 

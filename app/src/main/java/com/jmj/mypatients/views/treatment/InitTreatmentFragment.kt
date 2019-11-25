@@ -11,13 +11,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.jmj.mypatients.R
 import com.jmj.mypatients.databinding.FragmentInitTreatmentBinding
-import com.jmj.mypatients.databinding.FragmentInitTreatmentBindingImpl
-import kotlinx.android.synthetic.main.fragment_init_treatment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -29,7 +25,8 @@ class InitTreatmentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentInitTreatmentBinding =  DataBindingUtil.inflate(inflater, R.layout.fragment_init_treatment, container, false)
+        val binding: FragmentInitTreatmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_init_treatment, container, false)
         binding.viewModel = initTreatmentViewModel
         listenViewModelStatus(binding)
         initPatientSources(binding)
@@ -104,16 +101,23 @@ class InitTreatmentFragment : Fragment() {
     }
 
 
-    private fun listenViewModelStatus(binding: FragmentInitTreatmentBinding){
-        initTreatmentViewModel.status.observe(viewLifecycleOwner, Observer {status ->
-            when(status){
-                is TreatmentCreated ->{
-                    Toast.makeText(this.context, "Treatment created",Toast.LENGTH_SHORT).show()
-                    this.findNavController().navigate(R.id.action_initTreatmentFragment_to_homeFragment)
+    private fun listenViewModelStatus(binding: FragmentInitTreatmentBinding) {
+        initTreatmentViewModel.status.observe(viewLifecycleOwner, Observer { status ->
+            when (status) {
+                is TreatmentCreated -> {
+                    Toast.makeText(this.context, "Treatment created", Toast.LENGTH_SHORT).show()
+                    this.findNavController()
+                        .navigate(R.id.action_initTreatmentFragment_to_homeFragment)
                 }
-                is Error -> Toast.makeText(this.context, "Error: ${status.message}",Toast.LENGTH_SHORT).show()
-                is Loading -> {}
-                is Empty -> {}
+                is Error -> Toast.makeText(
+                    this.context,
+                    "Error: ${status.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                is Loading -> {
+                }
+                is Empty -> {
+                }
             }
 
         })

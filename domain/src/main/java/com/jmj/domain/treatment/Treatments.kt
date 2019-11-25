@@ -1,13 +1,15 @@
 package com.jmj.domain.treatment
 
+import androidx.lifecycle.LiveData
+
 interface Treatments {
 
-    fun find(treatmentId: String): Treatment?
+    suspend fun find(treatmentId: String):LiveData<Treatment>
 
-    fun save(treatment: Treatment)
+    suspend fun save(treatment: Treatment)
 
-    fun findByPatientName(patientName: String): Treatment?
+    suspend fun findByPatientName(patientName: String):LiveData<Treatment>
 
-    fun findAll(): List<Treatment>
+    suspend fun findAll(): LiveData<List<Treatment>>
 
 }

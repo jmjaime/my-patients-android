@@ -8,8 +8,8 @@ import com.jmj.domain.source.PatientSources
 class InMemoryPatientSources(private val patientSources: MutableMap<String, PatientSource> = mutableMapOf()) :
     PatientSources {
 
-    override fun findAll(): LiveData<List<PatientSource>> = MutableLiveData(patientSources.values.toList())
+    override suspend fun findAll(): LiveData<List<PatientSource>> = MutableLiveData(patientSources.values.toList())
 
-    override fun findById(id: String): LiveData<PatientSource> =
+    override suspend fun findById(id: String): LiveData<PatientSource> =
         patientSources[id]?.let { MutableLiveData(it) } ?: MutableLiveData()
 }

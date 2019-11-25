@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.jmj.mypatients.R
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_treatments_list.view.*
 
 class HomeFragment : Fragment() {
 
@@ -17,10 +18,17 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = inflater.inflate(R.layout.fragment_home, container, false)
-        binding.initTreatmentButton.setOnClickListener{
+        bindNavigation(binding)
+        return binding
+    }
+
+    private fun bindNavigation(binding: View) {
+        binding.initTreatmentButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_initTreatmentFragment)
         }
-        return binding
+        binding.treatmentsButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_treatmentsFragment)
+        }
     }
 
 

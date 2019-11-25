@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="treatment"
+                type="com.jmj.domain.treatment.Treatment" />
+        <variable
+                name="onClickListener"
+                type="com.jmj.mypatients.views.treatment.TreatmentListener" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:onClick="@{() -> onClickListener.onClick(treatment)}">
+
+        <TextView
+                android:id="@+id/treatment_patient_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:text="@{treatment.patient.name}"/>
+    </LinearLayout>
+</layout>

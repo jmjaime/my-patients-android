@@ -34,10 +34,10 @@
             android:layout_marginStart="80dp"
     />
     <Button
-            android:text="Button"
+            android:text="Treatments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button5"
+            android:id="@+id/treatmentsButton"
             app:layout_constraintTop_toBottomOf="@+id/registerSessionsButton"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="80dp"/>

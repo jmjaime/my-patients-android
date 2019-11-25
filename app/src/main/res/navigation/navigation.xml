@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
-            app:startDestination="@id/homeFragment">
-    <fragment android:id="@+id/homeFragment" android:name="com.jmj.mypatients.views.home.HomeFragment"
-              android:label="fragment_home" tools:layout="@layout/fragment_home">
-        <action android:id="@+id/action_homeFragment_to_initTreatmentFragment"
-                app:destination="@id/initTreatmentFragment"/>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation"
+        app:startDestination="@id/homeFragment">
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.jmj.mypatients.views.home.HomeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home">
+        <action
+                android:id="@+id/action_homeFragment_to_initTreatmentFragment"
+                app:destination="@id/initTreatmentFragment" />
+        <action
+                android:id="@+id/action_homeFragment_to_treatmentsFragment"
+                app:destination="@id/treatments_list" />
     </fragment>
-    <fragment android:id="@+id/initTreatmentFragment" android:name="com.jmj.mypatients.views.treatment.InitTreatmentFragment"
-              android:label="fragment_init_treatment" tools:layout="@layout/fragment_init_treatment">
-        <action android:id="@+id/action_initTreatmentFragment_to_homeFragment" app:destination="@id/homeFragment"/>
+    <fragment
+            android:id="@+id/initTreatmentFragment"
+            android:name="com.jmj.mypatients.views.treatment.InitTreatmentFragment"
+            android:label="fragment_init_treatment"
+            tools:layout="@layout/fragment_init_treatment">
+        <action
+                android:id="@+id/action_initTreatmentFragment_to_homeFragment"
+                app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+            android:id="@+id/treatments_list"
+            android:name="com.jmj.mypatients.views.treatment.TreatmentsFragment"
+            android:label="fragment_treatments"
+            tools:layout="@layout/fragment_treatments_list">
+        <action
+                android:id="@+id/action_treatmentsList_to_treatmentFragment"
+                app:destination="@id/treatmentFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/treatmentFragment"
+            android:name="com.jmj.mypatients.views.treatment.TreatmentFragment"
+            android:label="fragment_treatment"
+            tools:layout="@layout/fragment_treatment"/>
+
+
 </navigation>

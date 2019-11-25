@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 
 interface PatientSources {
 
-    fun findAll(): LiveData<List<PatientSource>>
+    suspend fun findAll(): LiveData<List<PatientSource>>
 
-    fun findById(id: String): LiveData<PatientSource>
+    suspend fun findById(id: String): LiveData<PatientSource>
 }
