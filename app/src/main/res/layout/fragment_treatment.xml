@@ -8,8 +8,15 @@
                 type="com.jmj.mypatients.views.treatment.TreatmentViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".views.treatment.TreatmentFragment" />
+            tools:context=".views.treatment.TreatmentFragment" >
+
+        <TextView
+                android:id="@+id/treatment_patient_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.treatment.patient.name}" />
+    </LinearLayout>
 </layout>

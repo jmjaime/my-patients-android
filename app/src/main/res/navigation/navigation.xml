@@ -38,7 +38,11 @@
             android:id="@+id/treatmentFragment"
             android:name="com.jmj.mypatients.views.treatment.TreatmentFragment"
             android:label="fragment_treatment"
-            tools:layout="@layout/fragment_treatment"/>
+            tools:layout="@layout/fragment_treatment">
+        <argument
+                android:name="treatmentId"
+                app:argType="string" />
+    </fragment>
 
 
 </navigation>

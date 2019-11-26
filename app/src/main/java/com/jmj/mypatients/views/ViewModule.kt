@@ -15,5 +15,5 @@ val viewModule = module {
         )
     }
     viewModel { TreatmentsViewModel(treatments = get()) }
-    viewModel { TreatmentViewModel() }
+    viewModel { (id:String) -> TreatmentViewModel(get(), id) }
 }

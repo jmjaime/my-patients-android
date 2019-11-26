@@ -30,8 +30,10 @@ class TreatmentsFragment : Fragment() {
     }
 
     private fun bindList(binding: FragmentTreatmentsListBinding) {
-        val adapter = TreatmentsAdapter(TreatmentListener(){
-            treatmentId -> binding.root.findNavController().navigate(R.id.action_treatmentsList_to_treatmentFragment)
+        val adapter = TreatmentsAdapter(TreatmentListener { treatmentId ->
+            binding.root.findNavController().navigate(
+                TreatmentsFragmentDirections.actionTreatmentsListToTreatmentFragment(treatmentId)
+            )
         })
         binding.treatmentsList.adapter = adapter
         treatmentsViewModel.myTreatments.observe(viewLifecycleOwner, Observer {
