@@ -11,12 +11,38 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".views.treatment.TreatmentFragment" >
+            android:orientation="vertical"
+            tools:context=".views.treatment.TreatmentFragment">
 
         <TextView
                 android:id="@+id/treatment_patient_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.treatment.patient.name}" />
+
+        <TextView
+                android:id="@+id/treatment_office_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.treatment.defaultOfficeId}" />
+
+        <TextView
+                android:id="@+id/treatment_patient_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.treatment.derivation.patientSource}" />
+
+        <TextView
+                android:id="@+id/treatment_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.treatment.derivation.currentFee.value.toString()}" />
+
+        <Button
+                android:id="@+id/treatment_add_session_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add session" />
+
     </LinearLayout>
 </layout>
