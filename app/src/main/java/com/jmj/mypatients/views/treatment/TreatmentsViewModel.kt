@@ -1,19 +1,26 @@
 package com.jmj.mypatients.views.treatment
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jmj.domain.treatment.Treatment
-import com.jmj.domain.treatment.Treatments
+import com.jmj.domain.action.Failure
+import com.jmj.domain.action.FindMyTreatments
+import com.jmj.domain.action.Success
+import com.jmj.domain.action.model.TreatmentAbbreviatedModel
 import kotlinx.coroutines.launch
 
-class TreatmentsViewModel(private val treatments: Treatments) : ViewModel() {
+class TreatmentsViewModel(private val findMyTreatments: FindMyTreatments) :
+    ViewModel() {
 
-    lateinit var myTreatments: LiveData<List<Treatment>>
+    val myTreatments: MutableLiveData<List<TreatmentAbbreviatedModel>> = MutableLiveData()
+    val error: MutableLiveData<String> = MutableLiveData()
 
     init {
         viewModelScope.launch {
-            this@TreatmentsViewModel.myTreatments = treatments.findAll()
+            when (val result = findMyTreatments()) {
+                is Success<List<TreatmentAbbreviatedModel>> -> myTreatments.value = result.value
+                is Failure -> error.value = result.error
+            }
         }
     }
 

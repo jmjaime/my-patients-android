@@ -1,10 +1,8 @@
 package com.jmj.domain.source
 
-import androidx.lifecycle.LiveData
-
 interface PatientSources {
 
-    suspend fun findAll(): LiveData<List<PatientSource>>
+    suspend fun findAll(): List<PatientSource>
 
-    suspend fun findById(id: String): LiveData<PatientSource>
+    suspend fun findById(id: String): PatientSource?
 }

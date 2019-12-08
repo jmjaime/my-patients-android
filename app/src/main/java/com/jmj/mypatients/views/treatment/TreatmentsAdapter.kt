@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jmj.domain.treatment.Treatment
+import com.jmj.domain.action.model.TreatmentAbbreviatedModel
 import com.jmj.mypatients.databinding.FragmentTreatmentsBinding
 
-class TreatmentsAdapter(private val onClickListener:TreatmentListener):
-    ListAdapter<Treatment, TreatmentsAdapter.ViewHolder>(TreatmentDiffCallback()) {
+class TreatmentsAdapter(private val onClickListener: TreatmentListener) :
+    ListAdapter<TreatmentAbbreviatedModel, TreatmentsAdapter.ViewHolder>(TreatmentDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -32,7 +32,7 @@ class TreatmentsAdapter(private val onClickListener:TreatmentListener):
         }
 
         fun bind(
-            item: Treatment,
+            item: TreatmentAbbreviatedModel,
             onClickListener: TreatmentListener
         ) {
             binding.treatment = item
@@ -41,12 +41,18 @@ class TreatmentsAdapter(private val onClickListener:TreatmentListener):
     }
 }
 
-class TreatmentDiffCallback : DiffUtil.ItemCallback<Treatment>() {
-    override fun areItemsTheSame(oldItem: Treatment, newItem: Treatment) = oldItem.id == newItem.id
+class TreatmentDiffCallback : DiffUtil.ItemCallback<TreatmentAbbreviatedModel>() {
+    override fun areItemsTheSame(
+        oldItem: TreatmentAbbreviatedModel,
+        newItem: TreatmentAbbreviatedModel
+    ) = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Treatment, newItem: Treatment) = oldItem == newItem
+    override fun areContentsTheSame(
+        oldItem: TreatmentAbbreviatedModel,
+        newItem: TreatmentAbbreviatedModel
+    ) = oldItem == newItem
 }
 
 class TreatmentListener(private val clickListener: (treatmentId: String) -> Unit) {
-    fun onClick(treatment: Treatment) = clickListener.invoke(treatment.id)
+    fun onClick(treatment: TreatmentAbbreviatedModel) = clickListener.invoke(treatment.id)
 }

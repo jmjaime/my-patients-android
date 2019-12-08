@@ -28,7 +28,7 @@ class InitTreatmentFragment : Fragment() {
         val binding: FragmentInitTreatmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_init_treatment, container, false)
         binding.viewModel = initTreatmentViewModel
-        listenViewModelStatus(binding)
+        listenViewModelStatus()
         initPatientSources(binding)
         initAvailableOffices(binding)
         return binding.root
@@ -101,7 +101,7 @@ class InitTreatmentFragment : Fragment() {
     }
 
 
-    private fun listenViewModelStatus(binding: FragmentInitTreatmentBinding) {
+    private fun listenViewModelStatus() {
         initTreatmentViewModel.status.observe(viewLifecycleOwner, Observer { status ->
             when (status) {
                 is TreatmentCreated -> {

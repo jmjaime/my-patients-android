@@ -10,10 +10,10 @@ val viewModule = module {
     viewModel {
         InitTreatmentViewModel(
             initTreatment = get(),
-            offices = get(),
-            patientSources = get()
+            findOffices = get(),
+            findPatientSources = get()
         )
     }
-    viewModel { TreatmentsViewModel(treatments = get()) }
+    viewModel { TreatmentsViewModel(findMyTreatments = get()) }
     viewModel { (id:String) -> TreatmentViewModel(get(), id) }
 }

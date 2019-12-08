@@ -1,41 +1,40 @@
 package com.jmj.mypatients.views.treatment
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jmj.domain.action.Failure
-import com.jmj.domain.action.InitTreatment
-import com.jmj.domain.action.InitTreatmentRequest
-import com.jmj.domain.action.Success
-import com.jmj.domain.money.Money
-import com.jmj.domain.office.Office
-import com.jmj.domain.office.Offices
-import com.jmj.domain.source.PatientSource
-import com.jmj.domain.source.PatientSources
+import com.jmj.domain.action.*
+import com.jmj.domain.action.model.OfficeModel
+import com.jmj.domain.action.model.PatientSourceModel
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
 
 class InitTreatmentViewModel(
     private val initTreatment: InitTreatment,
-    private val offices: Offices,
-    private val patientSources: PatientSources
+    private val findOffices: FindOffices,
+    private val findPatientSources: FindPatientSources
 ) : ViewModel() {
 
-    lateinit var availableOffices: LiveData<List<Office>>
-    lateinit var availablePatientSources: LiveData<List<PatientSource>>
+    val availableOffices: MutableLiveData<List<OfficeModel>> = MutableLiveData()
+    val availablePatientSources: MutableLiveData<List<PatientSourceModel>> = MutableLiveData()
     var status: MutableLiveData<InitTreatmentState> = MutableLiveData(Loading)
-    val selectedOffice: MutableLiveData<Office> = MutableLiveData()
-    val selectedPatientSource: MutableLiveData<PatientSource> = MutableLiveData()
+    val selectedOffice: MutableLiveData<OfficeModel> = MutableLiveData()
+    val selectedPatientSource: MutableLiveData<PatientSourceModel> = MutableLiveData()
     val patientName: MutableLiveData<String> = MutableLiveData()
 
     init {
         status
         viewModelScope.launch {
-            this@InitTreatmentViewModel.availableOffices = offices.findAll()
+            when (val result = findOffices.invoke()) {
+                is Success -> this@InitTreatmentViewModel.availableOffices.value = result.value
+                is Failure -> this@InitTreatmentViewModel.status.value = Error(result.error)
+            }
         }
         viewModelScope.launch {
-            this@InitTreatmentViewModel.availablePatientSources = patientSources.findAll()
+            when (val result = findPatientSources.invoke()) {
+                is Success -> this@InitTreatmentViewModel.availablePatientSources.value =
+                    result.value
+                is Failure -> this@InitTreatmentViewModel.status.value = Error(result.error)
+            }
         }
     }
 

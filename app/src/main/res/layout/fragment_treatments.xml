@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="treatment"
-                type="com.jmj.domain.treatment.Treatment" />
+                type="com.jmj.domain.action.model.TreatmentAbbreviatedModel" />
         <variable
                 name="onClickListener"
                 type="com.jmj.mypatients.views.treatment.TreatmentListener" />

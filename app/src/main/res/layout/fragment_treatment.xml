@@ -24,13 +24,13 @@
                 android:id="@+id/treatment_office_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.treatment.defaultOfficeId}" />
+                android:text="@{viewModel.treatment.office.name}" />
 
         <TextView
                 android:id="@+id/treatment_patient_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.treatment.derivation.patientSource}" />
+                android:text="@{viewModel.treatment.derivation.patientSource.source}" />
 
         <TextView
                 android:id="@+id/treatment_fee"
