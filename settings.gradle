@@ -1,1 +1,1 @@
-include ':app', ':domain', ':inmemoryrepository'
+include ':app', ':domain', ':inmemoryrepository', ':remoterepository'

@@ -16,8 +16,8 @@ import org.koin.dsl.module
 import java.math.BigDecimal
 
 val inMemoryRepositoryModule = module {
-    single<Offices> { InMemoryOffices(offices = defaultOffices()) }
-    single<PatientSources> { InMemoryPatientSources(patientSources = defaultPatientSources()) }
+   // single<Offices> { InMemoryOffices(offices = defaultOffices()) }
+  //  single<PatientSources> { InMemoryPatientSources(patientSources = defaultPatientSources()) }
     single<Treatments> { InMemoryTreatments(treatments = defaultTreatments()) }
 }
 
